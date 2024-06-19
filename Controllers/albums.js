@@ -157,6 +157,7 @@
 //   searchAlbums,
 // };
 
+
 const express = require("express");
 const Album = require("../models/Album");
 const NodeCache = require("node-cache");
@@ -274,6 +275,7 @@ const newAlbum = async (req, res) => {
     description: req.body.description,
     genre: req.body.genre,
     albumImage: req.body.albumImage,
+    bgColor: req.body.bgColor || '#FFFFFF', // Set default color if not provided
     songs: req.body.songs,
   });
   try {
@@ -330,7 +332,7 @@ const searchAlbums = async (req, res) => {
             genre: { $first: "$genre" },
             albumImage: { $first: "$albumImage" },
             songs: { $push: "$songs" },
-            bgcolor: { $first: "$bgcolor" },
+            bgColor: { $first: "$bgColor" },
             created_at: { $first: "$created_at" },
           },
         },
@@ -355,6 +357,3 @@ module.exports = {
   deleteAlbum,
   searchAlbums,
 };
-
-
-

@@ -14,11 +14,10 @@ const albumSchema = new Schema({
     description: String,
     genre: String,
     albumImage: { type: String, required: true },
+    bgColor: { type: String, required: true, default: '#FFFFFF' }, // Added default color
     songs: [songSchema],
-    Bgcolor: { type: String, default: "#FFFFFF" },  
     created_at: { type: Date, default: Date.now }
 });
-
 
 const Album = mongoose.model('Album', albumSchema);
 module.exports = Album;
